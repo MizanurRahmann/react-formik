@@ -27,13 +27,12 @@ const validate = values => {
 }
 
 
-function YoutubeForms() {
+function OldYoutubeForms() {
     const formik = useFormik({
         initialValues,
         onSubmit,
         validate
     })
-    console.log(formik.touched);
 
     return (
         <div>
@@ -44,7 +43,9 @@ function YoutubeForms() {
                         type="text" 
                         id="name" 
                         name="name" 
-                        {... formik.getFieldProps('name')}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.name}
                     />
                     {formik.touched.name && formik.errors.name 
                         ? (<div className="error-message">{formik.errors.name}</div>)
@@ -58,7 +59,9 @@ function YoutubeForms() {
                         type="email" 
                         id="email" 
                         name="email" 
-                        {... formik.getFieldProps('email')}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.email}
                     />
                     {formik.touched.email && formik.errors.email
                         ? (<div className="error-message">{formik.errors.email}</div>)
@@ -72,7 +75,9 @@ function YoutubeForms() {
                         type="text" 
                         id="channel" 
                         name="channel" 
-                        {... formik.getFieldProps('channel')}
+                        onChange={formik.handleChange} 
+                        onBlur={formik.handleBlur}
+                        value={formik.values.channel}
                     />
                     {formik.touched.channel && formik.errors.channel
                         ? (<div className="error-message">{formik.errors.channel}</div>) 
@@ -86,4 +91,4 @@ function YoutubeForms() {
     )
 }
 
-export default YoutubeForms
+export default OldYoutubeForms
