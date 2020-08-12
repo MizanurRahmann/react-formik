@@ -23,10 +23,15 @@ const validationSchema = Yup.object({
     name: Yup.string().required('Required!'),
     email: Yup.string().email("Invalid email format").required('Required!'),
     channel: Yup.string().required('Required!'),
-    comment: Yup.string().required('Required'),
     address: Yup.string().required('Required')
 })
 
+const validateComment = (value) =>{
+    let error;
+    if(!value)
+        error = "Required";
+    return error;
+}
 function YoutubeForms() {
 
     return (
@@ -34,8 +39,8 @@ function YoutubeForms() {
             initialValues = {initialValues}
             validationSchema = {validationSchema}
             onSubmit = {onSubmit}
-            validateOnChange={false} //prevent from.errors to run on change
-            validateOnBlur={false} //prevent from.errors to run on blur
+            //validateOnChange={false} //prevent from.errors to run on change
+            //validateOnBlur={false} //prevent from.errors to run on blur
         >
             <Form>
                 <div className="form-control">
@@ -78,7 +83,9 @@ function YoutubeForms() {
                         as= "textarea"
                         id="comment" 
                         name="comment"
+                        validate={validateComment}
                     />
+                    <ErrorMessage name="comment" component={TextError}/>
                 </div>
                 <div className="form-control">
                     <label htmlFor='address'>Address</label>
