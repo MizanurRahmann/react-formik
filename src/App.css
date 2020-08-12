@@ -46,6 +46,10 @@ button{
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 0 5px;
+}
+button:hover{
+  background: #333;
 }
 .error{
   color: red;
