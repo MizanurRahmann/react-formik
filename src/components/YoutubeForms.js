@@ -41,6 +41,7 @@ function YoutubeForms() {
             onSubmit={onSubmit}
         //validateOnChange={false} //prevent from.errors to run on change
         //validateOnBlur={false} //prevent from.errors to run on blur
+        // validateOnMount //disable submit button when it is not valid
         >
             {formik => {
                 console.log("Formik props: ", formik);
@@ -171,7 +172,11 @@ function YoutubeForms() {
                         </button>
 
                         {/* submit */}
-                        <button type="submit">Submit</button>
+                        <button type="submit" disabled={!(formik.dirty && formik.isValid)}>Submit</button>
+                        {/*
+                            formik.dirty is true when we change any value of field 
+                            formik.isValid is true when form is valid
+                        */}
                     </Form>
                 )
 
