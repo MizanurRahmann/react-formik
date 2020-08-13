@@ -16,8 +16,9 @@ const initialValues = {
     phoneNumbers: ['', ''],
     phNumbers: ['']
 }
-const onSubmit = values => {
+const onSubmit = (values, onSubmitProps) => {
     console.log(values);
+    onSubmitProps.setSubmitting(false); //after submision complete onSubmitProps sets to false
 }
 const validationSchema = Yup.object({
     name: Yup.string().required('Required!'),
@@ -171,12 +172,13 @@ function YoutubeForms() {
                             visit all
                         </button>
 
-                        {/* submit */}
-                        <button type="submit" disabled={!(formik.dirty && formik.isValid)}>Submit</button>
                         {/*
+                        <button type="submit" disabled={!(formik.dirty && formik.isValid)}>Submit</button>
+                        
                             formik.dirty is true when we change any value of field 
                             formik.isValid is true when form is valid
                         */}
+                        <button type="submit" disabled={!formik.isValid || formik.C}>Submit</button>
                     </Form>
                 )
 
