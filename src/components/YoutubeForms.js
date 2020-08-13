@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Formik, Form, Field, ErrorMessage, FieldArray, FastField } from 'formik';
 import * as Yup from 'yup';
 import TextError from './TextError';
@@ -9,6 +9,19 @@ const initialValues = {
     channel: '',
     comment: '',
     address: '',
+    social: {
+        facebook: '',
+        twitter: ''
+    },
+    phoneNumbers: ['', ''],
+    phNumbers: ['']
+}
+const savedData = {
+    name: 'Azox',
+    email: 'mx321@gmail.com',
+    channel: 'AzoxTalk',
+    comment: 'a comment',
+    address: 'Bangladesh',
     social: {
         facebook: '',
         twitter: ''
@@ -33,16 +46,21 @@ const validateComment = (value) => {
         error = "Required";
     return error;
 }
-function YoutubeForms() {
 
+
+
+
+function YoutubeForms() {
+    const [formValues, setFormValues] = useState(null);
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={formValues || initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
         //validateOnChange={false} //prevent from.errors to run on change
         //validateOnBlur={false} //prevent from.errors to run on blur
         // validateOnMount //disable submit button when it is not valid
+        enableReinitialize
         >
             {formik => {
                 console.log("Formik props: ", formik);
@@ -150,11 +168,11 @@ function YoutubeForms() {
                         </div>
 
                         {/* validate form and field */}
-                        <button type="button" onClick={() => formik.validateField('comment')}> validate comment</button>
-                        <button type="button" onClick={() => formik.validateForm()}> validate all</button>
+                        {/* <button type="button" onClick={() => formik.validateField('comment')}> validate comment</button>
+                        <button type="button" onClick={() => formik.validateForm()}> validate all</button> */}
 
                         {/* set touched form and field */}
-                        <button
+                        {/* <button
                             type="button"
                             onClick={() => formik.setFieldTouched('comment')}
                         >
@@ -170,7 +188,7 @@ function YoutubeForms() {
                             })}
                         >
                             visit all
-                        </button>
+                        </button> */}
 
                         {/*
                         <button type="submit" disabled={!(formik.dirty && formik.isValid)}>Submit</button>
@@ -178,6 +196,7 @@ function YoutubeForms() {
                             formik.dirty is true when we change any value of field 
                             formik.isValid is true when form is valid
                         */}
+                        <button type="button" onClick={() => setFormValues(savedData)} >Load saved data</button>
                         <button type="submit" disabled={!formik.isValid || formik.C}>Submit</button>
                     </Form>
                 )
