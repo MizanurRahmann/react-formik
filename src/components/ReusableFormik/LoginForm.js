@@ -22,15 +22,15 @@ function LoginForm() {
         <Formik initialValues={initiaValues} validationSchema={validationSchema} onSubmit={onSubmit} >
             {
                 formik => {
-                    <Form>
+                    return <Form>
                         <FormikControl
-                            controll='input'
+                            control='input'
                             type='email'
                             label='Email'
                             name='email'
                         />
                         <FormikControl
-                            controll='input'
+                            control='input'
                             type='password'
                             label='Password'
                             name='password'
