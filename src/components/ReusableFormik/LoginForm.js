@@ -15,7 +15,7 @@ function LoginForm() {
     });
 
     const onSubmit = values => {
-
+        console.log(values)
     }
 
     return (
@@ -24,18 +24,18 @@ function LoginForm() {
                 formik => {
                     return <Form>
                         <FormikControl
-                            control='input'
+                            control='chakrainput'
                             type='email'
                             label='Email'
                             name='email'
                         />
                         <FormikControl
-                            control='input'
+                            control='chakrainput'
                             type='password'
                             label='Password'
                             name='password'
                         />
-                        <button type='submit' disabled={formik.isValid}>Submit</button>
+                        <button type='submit' disabled={!formik.isValid}>Submit</button>
                     </Form>
                 }
             }
