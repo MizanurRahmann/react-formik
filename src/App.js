@@ -6,19 +6,23 @@ import EnrollForm from './components/ReusableFormik/EnrollForm';
 // import YoutubeForms from './components/ReactFormik/YoutubeForms';
 // import LoginForm from './components/ReusableFormik/LoginForm';
 
+import { Theme, ThemeProvider } from '@chakra-ui/core';
+
 function App() {
   return (
-    <div className="App">
-      {/* <YoutubeForms /> */}
+    <ThemeProvider theme={Theme}>
+      <div className="App">
+        {/* <YoutubeForms /> */}
 
-      {/* <FormikContainer /> */}
-      
-      {/* <LoginForm /> */}
+        {/* <FormikContainer /> */}
 
-      {/* <RegistrationForm /> */}
+        {/* <LoginForm /> */}
 
-      <EnrollForm />
-    </div>
+        {/* <RegistrationForm /> */}
+
+        <EnrollForm />
+      </div>
+    </ThemeProvider>
   );
 }
 
